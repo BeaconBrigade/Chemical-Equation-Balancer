@@ -225,7 +225,7 @@ def equality(rct_elm, rslt_elm) :
   result = {}
   prev = []
 
-  print("")
+  print("Start")
   print(rct_elm)
   print(rslt_elm)
 
@@ -249,6 +249,7 @@ def equality(rct_elm, rslt_elm) :
     
     prev.append(key)
 
+  print("End")
   print(react)
   print(result)
 
