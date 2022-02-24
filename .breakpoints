@@ -1,0 +1,28 @@
+{
+  "files": {
+    "equation_balancer/utils.py": [
+      {
+        "id": "2544e418-306a-48af-9549-1a3113d18bf9",
+        "line": 251,
+        "version": 684,
+        "index": 7238
+      }
+    ],
+    "reader.py": [
+      {
+        "id": "5d3cdb2b-f16d-4270-9f76-023fddbc2ada",
+        "line": 21,
+        "version": 626,
+        "index": 536
+      }
+    ],
+    "utils/utils.py": [
+      {
+        "id": "75ebc599-4840-49c1-b7cb-ddfc16b37edd",
+        "line": 20,
+        "version": 218,
+        "index": 502
+      }
+    ]
+  }
+}
