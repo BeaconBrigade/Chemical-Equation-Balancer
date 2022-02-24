@@ -225,10 +225,14 @@ def equality(rct_elm, rslt_elm) :
   result = {}
   prev = []
 
+  print("")
+  print(rct_elm)
+  print(rslt_elm)
+
   #Create new dict with summed repeats
   for key, value in rct_elm.items() :
     if key in prev :
-      react[key] = value + react[prev.index(key)]
+      react[key] = value + react[prev[prev.index(key)]]
     else :
       react[key] = value
 
@@ -239,7 +243,7 @@ def equality(rct_elm, rslt_elm) :
   #Add the resultants duplicates together
   for key, value in rslt_elm.items() :
     if key in prev :
-      result[key] = value + result[prev.index(key)]
+      result[key] = value + result[prev[prev.index(key)]]
     else :
       result[key] = value
     
@@ -250,7 +254,7 @@ def equality(rct_elm, rslt_elm) :
 
   inequalities = {}
 
-  react_key, react_value, result_value = list(react.keys()), list(react.values()), list(result.values())
+  react_key, react_value, = list(react.keys()), list(react.values())
 
   #Check for equality and record which elements aren't equal
   for i in range(len(react_key)) :
