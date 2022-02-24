@@ -1,3 +1,5 @@
+from equation_balancer.dictlist import Dictlist as dictL
+
 def reader(equation) :
   """Convert input into elements that the computer can balance."""
 
@@ -170,8 +172,8 @@ def reader(equation) :
   # react_elm = {x[:-1] : int(x[-1]) for x in reactants_elements}
   # result_elm = {x[:-1] : int(x[-1]) for x in resultants_elements}
   #Create dictionaries that store the element and the amount
-  react_elm = {}
-  result_elm = {}
+  react_elm = dictL()
+  result_elm = dictL()
 
   for t in reactants_elements :
     number = []
@@ -211,7 +213,8 @@ def reader(equation) :
   #Dictionaries of the compound to element
   react_comp = {x : child_parent[x] for x in reactants_compounds}
   result_comp = {x : child_parent[x] for x in resultants_compounds}
-
+  print(react_elm)
+  print(result_elm)
   return (react_comp, result_comp, react_elm, result_elm)
 
 #///////////////////////////////////////////////////////////#
@@ -223,7 +226,6 @@ def equality(rct_elm, rslt_elm) :
 
   react = {}
   result = {}
-  prev = []
 
   print("Start")
   print(rct_elm)
@@ -231,23 +233,11 @@ def equality(rct_elm, rslt_elm) :
 
   #Create new dict with summed repeats
   for key, value in rct_elm.items() :
-    if key in prev :
-      react[key] = value + react[prev[prev.index(key)]]
-    else :
-      react[key] = value
-
-    prev.append(key)
-
-  prev = []
+    react[key] = sum(value)
 
   #Add the resultants duplicates together
   for key, value in rslt_elm.items() :
-    if key in prev :
-      result[key] = value + result[prev[prev.index(key)]]
-    else :
-      result[key] = value
-    
-    prev.append(key)
+    result[key] = sum(value)
 
   print("End")
   print(react)

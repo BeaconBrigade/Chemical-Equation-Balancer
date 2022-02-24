@@ -3,15 +3,15 @@
     "equation_balancer/utils.py": [
       {
         "id": "fadd933f-9844-4ce5-afbe-8edcfeb4a4b1",
-        "line": 233,
-        "version": 740,
-        "index": 6836
+        "line": 235,
+        "version": 981,
+        "index": 6935
       },
       {
         "id": "d3780764-ec95-49b3-990b-e79647aad457",
-        "line": 244,
-        "version": 740,
-        "index": 7065
+        "line": 239,
+        "version": 981,
+        "index": 7044
       }
     ]
   }
