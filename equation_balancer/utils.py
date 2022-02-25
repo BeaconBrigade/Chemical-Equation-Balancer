@@ -227,10 +227,6 @@ def equality(rct_elm, rslt_elm) :
   react = {}
   result = {}
 
-  print("Start")
-  print(rct_elm)
-  print(rslt_elm)
-
   #Create new dict with summed repeats
   for key, value in rct_elm.items() :
     react[key] = sum(value)
@@ -238,10 +234,6 @@ def equality(rct_elm, rslt_elm) :
   #Add the resultants duplicates together
   for key, value in rslt_elm.items() :
     result[key] = sum(value)
-
-  print("End")
-  print(react)
-  print(result)
 
   inequalities = {}
 
@@ -261,18 +253,30 @@ def equality(rct_elm, rslt_elm) :
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 
-import numpy as np
-
 def balancer(rct_cmp, rslt_comp, rct_elm, rslt_elm) :
   """Balance input on both sides of the equation."""
 
-  equality(rct_elm,rslt_elm)
+  #Store old versions for reverting
+  old = (rct_elm,rslt_elm,rct_comp,rslt_comp)
 
-  #lowest common multiple
-  np.lcm.reduce([3, 12, 20])
+  #Start coefficient
+  coef = 2
 
-  #use .join(" + or -> ") to create the equation
-  #USE LCM TO GET THE ANSWER
+  react = {x : 1 for x in rct_cmp}
+  result = {x : 1 for x in rslt_cmp}
+  
+  #Repeat until the equation is balanced
+  while True :
+    is_equal = equality(rct_elm,rslt_elm)
+    
+    #Equation is balanced
+    if not is_equal :
+      return react, result
+
+    #Find a way to try every combination of coefficients in 
+    #ascending order checking equality after each change.
+
+    
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
@@ -280,5 +284,6 @@ def balancer(rct_cmp, rslt_comp, rct_elm, rslt_elm) :
 
 def writer(equation) :
   """Write balanced equation back into a readable format to be printed out."""
-
+  #use .join(" + " or " -> ") to create the equation
+  
   pass
