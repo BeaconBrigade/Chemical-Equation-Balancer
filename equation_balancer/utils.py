@@ -167,10 +167,24 @@ def reader(equation) :
   #Done with the equals sign
   if '->' in resultants_elements :
     resultants_elements.remove('->')
+
+  #Record all unique elements.
+  unique_elements = []
+  for i in reactants_elements :
+    if i not in unique_elements :
+      unique_elements.append(i)
+
+  #Create blank matrix
+  matrix = []
+  for i in range(len(compounds)) :
+    matrix.append([])
+    for j in unique_elements :
+      matrix[i].append(0)
+
+  print(matrix)
+
   
-  #Sadly these can't detect multiple digit numbers ... they looked so clean :(
-  # react_elm = {x[:-1] : int(x[-1]) for x in reactants_elements}
-  # result_elm = {x[:-1] : int(x[-1]) for x in resultants_elements}
+  
   #Create dictionaries that store the element and the amount
   react_elm = dictL()
   result_elm = dictL()
@@ -192,7 +206,7 @@ def reader(equation) :
     number = ''.join(number)
     slices = -1 * len(number)
     result_elm[q[:slices]] = int(number)
-
+    
   #Seperate all of the compounds to the reactants or resultants as compounds
   is_reactant = True
   for i in compounds :
