@@ -3,10 +3,10 @@
 #Ryan Cullen
 
 import pytest
-from equation_balancer.utils import reader
+from equation_balancer.balance import balance
 
-reader("C8H18 + O2 -> CO2 + H2O")
+print(balance("C8H18 + O2 -> CO2 + H2O"))
 
-reader("(NH4)3PO4 + Mg(CH3COO)2 -> Mg3(PO4)2 + NH4CH3COO")
+print(balance("(NH4)3PO4 + Mg(CH3COO)2 -> Mg3(PO4)2 + NH4CH3COO"))
 
 #pytest.main()

@@ -1,3 +1,5 @@
+from sympy import Matrix, lcm
+
 def reader(equation) :
   """Convert input into elements that the computer can balance."""
 
@@ -237,22 +239,39 @@ def reader(equation) :
     
   print(matrix)
   
-  return matrix, unique_elements, reactants_compounds,resultants_compounds
+  return matrix, unique_elements, reactants_compounds, resultants_compounds, equation
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 
-def balancer(rct_cmp, rslt_comp, rct_elm, rslt_elm) :
+def balancer(matrix, unique, reactants, products, equation) :
   """Balance input on both sides of the equation."""
 
-  pass
+  #Transpose the matrix so that each row is row is the amounts of an element
+  sym_matrix = Matrix(matrix)
+  sym_matrix = sym_matrix.transpose()
+  print(f"Transposed matrix: {sym_matrix}")
+
+  #Find nullspace
+  solution = sym_matrix.nullspace()[0]
+  
+  print(f"Solution: {solution}")
+
+  #Convert fractions to integer coefficients
+  multiple = lcm([x.q for x in solution])
+  print(f"Multiple: {multiple}")
+
+  solution = solution * multiple.numerator / multiple.denominator
+  print(f"Coefficients: {solution}")
+
+  return solution, equation
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 
-def writer(equation) :
+def writer(solution, equation) :
   """Write balanced equation back into a readable format to be printed out."""
   #use .join(" + " or " -> ") to create the equation
   
