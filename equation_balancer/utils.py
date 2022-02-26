@@ -1,5 +1,3 @@
-from equation_balancer.dictlist import Dictlist as dictL
-
 def reader(equation) :
   """Convert input into elements that the computer can balance."""
 
@@ -167,36 +165,29 @@ def reader(equation) :
   #Done with the equals sign
   if '->' in resultants_elements :
     resultants_elements.remove('->')
+
+  #Record all unique elements.
+  unique_elements = []
+  for i in reactants_elements :
+    elm = []
+    for j in i :
+      if j.isalpha() :
+        elm.append(j)
+    elm = ''.join(elm)
+    if elm not in unique_elements :
+      unique_elements.append(elm)
+  print(unique_elements)
   
-  #Sadly these can't detect multiple digit numbers ... they looked so clean :(
-  # react_elm = {x[:-1] : int(x[-1]) for x in reactants_elements}
-  # result_elm = {x[:-1] : int(x[-1]) for x in resultants_elements}
-  #Create dictionaries that store the element and the amount
-  react_elm = dictL()
-  result_elm = dictL()
-
-  for t in reactants_elements :
-    number = []
-    for j in t :
-      if j.isnumeric() :
-        number.append(j)
-    number = ''.join(number)
-    slices = -1 * len(number)
-    react_elm[t[:slices]] = int(number)
-
-  for q in resultants_elements :
-    number = []
-    for z in q :
-      if z.isnumeric() :
-        number.append(z)
-    number = ''.join(number)
-    slices = -1 * len(number)
-    result_elm[q[:slices]] = int(number)
+  #Create blank matrix
+  matrix = []
+  for i in range(len(compounds) - 1) :
+    matrix.append([])
+    for j in unique_elements :
+      matrix[i].append(0)
 
   #Seperate all of the compounds to the reactants or resultants as compounds
   is_reactant = True
   for i in compounds :
-    
     #Determine which side of the equation it's on
     if i == "->" :
       is_reactant = False
@@ -206,48 +197,47 @@ def reader(equation) :
       reactants_compounds.append(i)
     else:
       resultants_compounds.append(i)
-
-  #Remove the equals sign
   resultants_compounds.remove('->')
 
-  #Dictionaries of the compound to element
-  react_comp = {x : child_parent[x] for x in reactants_compounds}
-  result_comp = {x : child_parent[x] for x in resultants_compounds}
-  print(react_elm)
-  print(result_elm)
-  return (react_comp, result_comp, react_elm, result_elm)
+  #Fill in reactant side of matrix
+  for i in range(len(reactants_compounds)) :
+    for t in reactants_elements :
+      #Find number
+      number = []
+      for j in t :
+        if j.isnumeric() :
+          number.append(j)
+      number = int(''.join(number))
+      slices = -1 * len(str(number))
 
-#///////////////////////////////////////////////////////////#
-#///////////////////////////////////////////////////////////#
-#///////////////////////////////////////////////////////////#
+      #Remove number to search for the unique element
+      elm = t[:slices]
 
-def equality(rct_elm, rslt_elm) :
-  """Check if the number of each element is the same on both sides."""
+      #Add number to matrix if it's a part of this compound
+      if elm in child_parent[reactants_compounds[i]] :
+        matrix[i][unique_elements.index(elm)] = number
 
-  react = {}
-  result = {}
+  #Resultant side of matrix
+  for i in range(len(resultants_compounds)) :
+    for t in resultants_elements :
+      #Find number
+      number = []
+      for j in t :
+        if j.isnumeric() :
+          number.append(j)
+      number = -1 * int(''.join(number))
+      slices = -1 * (len(str(number)) - 1)
 
-  #Create new dict with summed repeats
-  for key, value in rct_elm.items() :
-    react[key] = sum(value)
+      #Remove number to search for the unique element
+      elm = t[:slices]
 
-  #Add the resultants duplicates together
-  for key, value in rslt_elm.items() :
-    result[key] = sum(value)
-
-  inequalities = {}
-
-  react_key, react_value, = list(react.keys()), list(react.values())
-
-  #Check for equality and record which elements aren't equal
-  for i in range(len(react_key)) :
+      #Add number to matrix if it's a part of this compound
+      if elm in child_parent[resultants_compounds[i]] :
+        matrix[i + len(reactants_compounds)][unique_elements.index(elm)] = number
     
-    if react_value[i] > result[react_key[i]] :
-      inequalities[react_key[i]] = 1
-    elif react_value[i] < result[react_key[i]] :
-      inequalities[react_key[i]] = 0
-
-  return inequalities
+  print(matrix)
+  
+  return matrix, unique_elements, reactants_compounds,resultants_compounds
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
@@ -256,27 +246,7 @@ def equality(rct_elm, rslt_elm) :
 def balancer(rct_cmp, rslt_comp, rct_elm, rslt_elm) :
   """Balance input on both sides of the equation."""
 
-  #Store old versions for reverting
-  old = (rct_elm,rslt_elm,rct_comp,rslt_comp)
-
-  #Start coefficient
-  coef = 2
-
-  react = {x : 1 for x in rct_cmp}
-  result = {x : 1 for x in rslt_cmp}
-  
-  #Repeat until the equation is balanced
-  while True :
-    is_equal = equality(rct_elm,rslt_elm)
-    
-    #Equation is balanced
-    if not is_equal :
-      return react, result
-
-    #Find a way to try every combination of coefficients in 
-    #ascending order checking equality after each change.
-
-    
+  pass
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#

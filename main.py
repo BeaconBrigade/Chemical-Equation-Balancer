@@ -3,9 +3,10 @@
 #Ryan Cullen
 
 import pytest
-from equation_balancer.utils import reader, equality
+from equation_balancer.utils import reader
 
-a,b,c,d = reader("C8H18 + O2 -> CO2 + H2O")
-equality(c,d)
+reader("C8H18 + O2 -> CO2 + H2O")
 
-pytest.main()
+reader("(NH4)3PO4 + Mg(CH3COO)2 -> Mg3(PO4)2 + NH4CH3COO")
+
+#pytest.main()
