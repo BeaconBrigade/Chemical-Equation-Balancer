@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "equation_balancer/utils.py": [
+      {
+        "id": "a9370cd0-8bd1-409d-a9bb-a2d1aab51d79",
+        "line": 229,
+        "version": 4010,
+        "index": 6672
+      }
+    ]
+  }
 }

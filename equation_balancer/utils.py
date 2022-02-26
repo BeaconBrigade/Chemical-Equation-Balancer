@@ -187,8 +187,6 @@ def reader(equation) :
     for j in unique_elements :
       matrix[i].append(0)
 
-  print(matrix)
-
   #Seperate all of the compounds to the reactants or resultants as compounds
   is_reactant = True
   for i in compounds :
@@ -206,38 +204,38 @@ def reader(equation) :
   #Fill in reactant side of matrix
   for i in range(len(reactants_compounds)) :
     for t in reactants_elements :
+      #Find number
       number = []
       for j in t :
         if j.isnumeric() :
           number.append(j)
       number = int(''.join(number))
+      slices = -1 * len(str(number))
 
       #Remove number to search for the unique element
-      elm = []
-      for q in t :
-        if q.isalpha() :
-          elm.append(q)
-      elm = ''.join(elm)
-      
-      matrix[i][unique_elements.index(elm)] = number
+      elm = t[:slices]
+
+      #Add number to matrix if it's a part of this compound
+      if elm in child_parent[reactants_compounds[i]] :
+        matrix[i][unique_elements.index(elm)] = number
 
   #Resultant side of matrix
   for i in range(len(resultants_compounds)) :
     for t in resultants_elements :
+      #Find number
       number = []
       for j in t :
         if j.isnumeric() :
           number.append(j)
       number = -1 * int(''.join(number))
+      slices = -1 * (len(str(number)) - 1)
 
       #Remove number to search for the unique element
-      elm = []
-      for q in t :
-        if q.isalpha() :
-          elm.append(q)
-      elm = ''.join(elm)
-      
-      matrix[i + len(reactants_compounds)][unique_elements.index(elm)] = number
+      elm = t[:slices]
+
+      #Add number to matrix if it's a part of this compound
+      if elm in child_parent[resultants_compounds[i]] :
+        matrix[i + len(reactants_compounds)][unique_elements.index(elm)] = number
     
   print(matrix)
   
