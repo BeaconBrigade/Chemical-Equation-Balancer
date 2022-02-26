@@ -171,9 +171,15 @@ def reader(equation) :
   #Record all unique elements.
   unique_elements = []
   for i in reactants_elements :
-    if i not in unique_elements :
-      unique_elements.append(i)
-
+    elm = []
+    for j in i :
+      if j.isalpha() :
+        elm.append(j)
+    elm = ''.join(elm)
+    if elm not in unique_elements :
+      unique_elements.append(elm)
+  print(unique_elements)
+  
   #Create blank matrix
   matrix = []
   for i in range(len(compounds)) :
@@ -227,8 +233,7 @@ def reader(equation) :
   #Dictionaries of the compound to element
   react_comp = {x : child_parent[x] for x in reactants_compounds}
   result_comp = {x : child_parent[x] for x in resultants_compounds}
-  print(react_elm)
-  print(result_elm)
+  
   return (react_comp, result_comp, react_elm, result_elm)
 
 #///////////////////////////////////////////////////////////#
