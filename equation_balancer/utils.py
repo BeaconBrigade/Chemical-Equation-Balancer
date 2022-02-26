@@ -1,5 +1,3 @@
-from equation_balancer.dictlist import Dictlist as dictL
-
 def reader(equation) :
   """Convert input into elements that the computer can balance."""
 
