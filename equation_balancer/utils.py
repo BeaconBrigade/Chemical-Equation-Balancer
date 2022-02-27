@@ -215,33 +215,34 @@ def reader(equation) :
       resultants_compounds.append(i)
   resultants_compounds.remove('->')
   
-  return matrix, unique_elements, reactants_compounds, resultants_compounds, equation
+  return matrix, equation
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
 
-def solve(matrix, unique, reactants, products, equation) :
+def solve(matrix, equation) :
   """Balance input on both sides of the equation."""
 
   #Transpose the matrix so that each row is row is the amounts of an element
   sym_matrix = Matrix(matrix)
   sym_matrix = sym_matrix.transpose()
-  print(f"Transposed matrix: {sym_matrix}")
 
   #Find nullspace
   solution = sym_matrix.nullspace()[0]
-  
-  print(f"Solution: {solution}")
 
   #Convert fractions to integer coefficients
   multiple = lcm([x.q for x in solution])
-  print(f"Multiple: {multiple}")
 
   solution = solution * multiple.numerator / multiple.denominator
-  print(f"Coefficients: {solution}")
 
-  return solution, equation
+  #Turn matrix into a list
+  format = []
+  for i in range(len(solution)) :
+    format.append(solution[i])
+  print(f"Coefficients: {format}")
+  
+  return (format, equation)
 
 #///////////////////////////////////////////////////////////#
 #///////////////////////////////////////////////////////////#
@@ -252,3 +253,19 @@ def writer(solution, equation) :
   #use .join(" + " or " -> ") to create the equation
   
   pass
+
+def balance(equation) :
+  """
+  Input chemical equation, and it will be returned balanced.
+
+  Example 1: 
+    Input: Cu(OH)2 + K -> KOH + Cu
+    Output: Cu(OH)2 + 2K -> 2KOH + Cu
+
+  Example 2: 
+    Input: Li2O + FeF3 -> LiF + Fe2O3
+    Output: 3Li2O + 2FeF3 -> 6LiF + Fe2O3
+  """
+  r, e = reader(equation)
+  eq, sol = solve(r, e)
+  return writer(eq, sol)
