@@ -35,5 +35,5 @@ def test_high_digits() :
 
 def test_high_bracket_double_replacement() :
   test_9 = "(NH4)3PO4 + Mg(CH3COO)2 -> Mg3(PO4)2 + NH4CH3COO"
-  assert reader(test_9) == ([[3,12,1,4,0,0],[0,6,0,4,1,4],[0,0,-2,-8,-3,0],[-1,-7,0,-2,0,-2]], ["N","H","P","O","Mg","C"], ["(NH4)3PO4","Mg(CH3COOH)2"], ["Mg3(PO4)2","NH4CH3COO"], test_9)
+  assert reader(test_9) == ([[3,12,1,4,0,0],[0,6,0,4,1,4],[0,0,-2,-8,-3,0],[-1,-7,0,-2,0,-2]], ["N","H","P","O","Mg","C"], ["(NH4)3PO4","Mg(CH3COO)2"], ["Mg3(PO4)2","NH4CH3COO"], test_9)
  
