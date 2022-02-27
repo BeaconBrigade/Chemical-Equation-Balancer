@@ -34,18 +34,11 @@ def addMatrix(matrix, cmpnd, compounds, element, unique, side) :
 def reader(equation) :
   """Convert input into elements that the computer can balance."""
 
-  #Variables
-  reactants_compounds = []
-  reactants_elements = []
-  resultants_compounds = []
-  resultants_elements = []
-
   #Seperate all of the compounds and leave the -> sign in.
   compounds = equation.split(' ')
   compounds = [x for x in compounds if not x == '+']
 
   #Find each element and its amount
-  is_reactant = True
   elements = []
 
   #Create blank matrix
@@ -182,38 +175,6 @@ def reader(equation) :
         cur_elmt = []
         
       prev_letter = letter
-
-  #Seperate elements into reactants and resultants as elements
-  is_reactant = True
-  for i in elements :
-    
-    if i[0] == '->' :
-      is_reactant = False
-
-    #Before equals.
-    if is_reactant :
-      reactants_elements.append(i[0])
-    #After equals
-    else :
-      resultants_elements.append(i[0])
-
-  #Done with the equals sign
-  if '->' in resultants_elements :
-    resultants_elements.remove('->')
-  
-  #Seperate all of the compounds to the reactants or resultants as compounds
-  is_reactant = True
-  for i in compounds :
-    #Determine which side of the equation it's on
-    if i == "->" :
-      is_reactant = False
-    
-    #Add to the reactant or resultant
-    if is_reactant:
-      reactants_compounds.append(i)
-    else:
-      resultants_compounds.append(i)
-  resultants_compounds.remove('->')
   
   return matrix, equation
 
@@ -250,9 +211,11 @@ def solve(matrix, equation) :
 
 def writer(solution, equation) :
   """Write balanced equation back into a readable format to be printed out."""
-  #use .join(" + " or " -> ") to create the equation
+
+  splitEquation = equation.
   
-  pass
+  for i in solution :
+    
 
 def balance(equation) :
   """
