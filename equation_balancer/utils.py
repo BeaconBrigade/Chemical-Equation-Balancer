@@ -212,10 +212,27 @@ def solve(matrix, equation) :
 def writer(solution, equation) :
   """Write balanced equation back into a readable format to be printed out."""
 
-  splitEquation = equation.
-  
-  for i in solution :
-    
+  #Split the equation up with and find the equals sign
+  equalsPos = equation.split(' ').index('->')
+  splitEquation = [x for x in equation.split(' ') if not (x == '+' or x == '->')]
+
+  #Insert the coefficient
+  for i in range(len(splitEquation)) :
+    if solution[i] != 1 :
+      splitEquation.insert(i, solution[i])
+      splitEquation[i] = ''.join([str(splitEquation[i]), splitEquation[i + 1]])
+
+  #Join elements together
+  plusEquation = ' + '.join(splitEquation).split(' ')
+
+  #Replace the equals sign
+  plusEquation[equalsPos] = '->'
+
+  #Combine everything back together
+  finalEquation = ' '.join(plusEquation)
+  print(finalEquation)
+
+  return finalEquation
 
 def balance(equation) :
   """
