@@ -3,5 +3,11 @@
 #Ryan Cullen
 
 import pytest
+from chemBal.utils import balance
 
-pytest.main()
+x = input("Input equation: ")
+
+if not x :
+  pytest.main()
+else :
+  balance(x)
