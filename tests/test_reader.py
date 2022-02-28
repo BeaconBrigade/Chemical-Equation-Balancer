@@ -1,4 +1,4 @@
-from equation_balancer.utils import reader
+from chemBal.utils import reader
 
 #test if the function returns the correct answers
 def test_formation() :

@@ -1,4 +1,4 @@
-from equation_balancer.utils import balance
+from chemBal.utils import balance
 
 ##test if the function returns the correct answers
 def test_formation() :
