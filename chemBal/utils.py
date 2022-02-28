@@ -201,7 +201,6 @@ def solve(matrix, equation) :
   format = []
   for i in range(len(solution)) :
     format.append(solution[i])
-  print(f"Coefficients: {format}")
   
   return (format, equation)
 
@@ -232,7 +231,6 @@ def writer(solution, equation) :
 
   #Combine everything back together
   finalEquation = ' '.join(plusEquation)
-  print(finalEquation)
 
   return finalEquation
 
