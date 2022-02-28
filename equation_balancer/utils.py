@@ -34,18 +34,11 @@ def addMatrix(matrix, cmpnd, compounds, element, unique, side) :
 def reader(equation) :
   """Convert input into elements that the computer can balance."""
 
-  #Variables
-  reactants_compounds = []
-  reactants_elements = []
-  resultants_compounds = []
-  resultants_elements = []
-
   #Seperate all of the compounds and leave the -> sign in.
   compounds = equation.split(' ')
   compounds = [x for x in compounds if not x == '+']
 
   #Find each element and its amount
-  is_reactant = True
   elements = []
 
   #Create blank matrix
@@ -162,9 +155,9 @@ def reader(equation) :
       
       #If there's a bracket, set the coefficient to the number following
       elif letter == '(' :
-
+        
         try :
-          coef = int(cmpnd[cmpnd.index(')') + 1])
+          coef = int(cmpnd[cmpnd[i:].index(')') + 1 + len(cmpnd[:i])])
         #If the character after the end of the string isn't a number, or is the
         #end of the string, set the coefficient to 1 
         except :
@@ -182,38 +175,6 @@ def reader(equation) :
         cur_elmt = []
         
       prev_letter = letter
-
-  #Seperate elements into reactants and resultants as elements
-  is_reactant = True
-  for i in elements :
-    
-    if i[0] == '->' :
-      is_reactant = False
-
-    #Before equals.
-    if is_reactant :
-      reactants_elements.append(i[0])
-    #After equals
-    else :
-      resultants_elements.append(i[0])
-
-  #Done with the equals sign
-  if '->' in resultants_elements :
-    resultants_elements.remove('->')
-  
-  #Seperate all of the compounds to the reactants or resultants as compounds
-  is_reactant = True
-  for i in compounds :
-    #Determine which side of the equation it's on
-    if i == "->" :
-      is_reactant = False
-    
-    #Add to the reactant or resultant
-    if is_reactant:
-      reactants_compounds.append(i)
-    else:
-      resultants_compounds.append(i)
-  resultants_compounds.remove('->')
   
   return matrix, equation
 
@@ -250,9 +211,30 @@ def solve(matrix, equation) :
 
 def writer(solution, equation) :
   """Write balanced equation back into a readable format to be printed out."""
-  #use .join(" + " or " -> ") to create the equation
-  
-  pass
+
+  #Split the equation up with and find the equals sign
+  equalsPos = (equation.split(' ')).index('->')
+  splitEquation = [x for x in equation.split(' ') if not (x == '+' or x == '->')]
+
+  #Insert the coefficient
+  for i in range(len(splitEquation)) :
+    if solution[i] != 1 :
+      splitEquation.insert(i, solution[i])
+      splitEquation[i] = ''.join([str(splitEquation[i]), splitEquation[i + 1]])
+      splitEquation.remove(splitEquation[i + 1])
+
+  #Join elements together
+  plusEquation = ' + '.join(splitEquation)
+  plusEquation = plusEquation.split(' ')
+
+  #Replace the equals sign
+  plusEquation[equalsPos] = '->'
+
+  #Combine everything back together
+  finalEquation = ' '.join(plusEquation)
+  print(finalEquation)
+
+  return finalEquation
 
 def balance(equation) :
   """
