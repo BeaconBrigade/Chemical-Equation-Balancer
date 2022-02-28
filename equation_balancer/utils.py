@@ -155,9 +155,9 @@ def reader(equation) :
       
       #If there's a bracket, set the coefficient to the number following
       elif letter == '(' :
-
+        
         try :
-          coef = int(cmpnd[cmpnd.index(')') + 1])
+          coef = int(cmpnd[cmpnd[i:].index(')') + 1 + len(cmpnd[:i])])
         #If the character after the end of the string isn't a number, or is the
         #end of the string, set the coefficient to 1 
         except :
@@ -213,7 +213,7 @@ def writer(solution, equation) :
   """Write balanced equation back into a readable format to be printed out."""
 
   #Split the equation up with and find the equals sign
-  equalsPos = equation.split(' ').index('->')
+  equalsPos = (equation.split(' ')).index('->')
   splitEquation = [x for x in equation.split(' ') if not (x == '+' or x == '->')]
 
   #Insert the coefficient
@@ -221,9 +221,11 @@ def writer(solution, equation) :
     if solution[i] != 1 :
       splitEquation.insert(i, solution[i])
       splitEquation[i] = ''.join([str(splitEquation[i]), splitEquation[i + 1]])
+      splitEquation.remove(splitEquation[i + 1])
 
   #Join elements together
-  plusEquation = ' + '.join(splitEquation).split(' ')
+  plusEquation = ' + '.join(splitEquation)
+  plusEquation = plusEquation.split(' ')
 
   #Replace the equals sign
   plusEquation[equalsPos] = '->'
