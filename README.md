@@ -20,3 +20,11 @@ Balance an Inputted Chemical Equation
 
     Input: Li2O + FeF3 -> LiF + Fe2O3
     Output: 3Li2O + 2FeF3 -> 6LiF + Fe2O3
+
+# Installation
+
+In order to run this repository you will need the ChemBal folder. In terms of other modules you will need, Sympy and Colorama should be installed.
+
+You *do not* need the main.py file or any of the other files.
+
+**Enjoy!!**
