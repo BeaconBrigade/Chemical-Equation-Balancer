@@ -10,4 +10,4 @@ x = input("Input equation: ")
 if not x :
   pytest.main()
 else :
-  balance(x)
+  print(balance(x))
