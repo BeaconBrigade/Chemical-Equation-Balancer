@@ -22,9 +22,8 @@ def addMatrix(matrix, cmpnd, compounds, element, unique, side) :
       updated_matrix[i].append(0)
 
   #Add to the matrix
- 
   updated_matrix[pureComp.index(cmpnd)][unique.index(elm)] += (num * side)
-
+  
   return (updated_matrix, new_unique)
 
 #///////////////////////////////////////////////////////////#
@@ -191,7 +190,7 @@ def solve(matrix, equation) :
 
   #Find nullspace
   solution = sym_matrix.nullspace()[0]
-
+  
   #Convert fractions to integer coefficients
   multiple = lcm([x.q for x in solution])
 
