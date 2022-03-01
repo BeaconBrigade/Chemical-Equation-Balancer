@@ -131,3 +131,62 @@ def test_single_replacement_9() :
 def test_single_replacement_10() :
   assert balance("Na + HOH -> NaOH + H2") == "2Na + 2HOH -> 2NaOH + H2"
 
+def test_double_replacement_1() :
+  assert balance("Pb(NO3)2 + KI -> PbI2 + KNO3") == "Pb(NO3)2 + 2KI -> PbI2 + 2KNO3"
+
+def test_double_replacement_2() :
+  assert balance("AsCl3 + H2S -> As2S3 + HCl") == "2AsCl3 + 3H2S -> As2S3 + 6HCl"
+
+def test_double_replacement_3() :
+  assert balance("AgCl + Mg(OH)2 -> MgCl2 + AgOH") == "2AgCl + Mg(OH)2 -> MgCl2 + 2AgOH"
+
+def test_double_replacement_4() :
+  assert balance("Ca(OH)2 + Mg(HCO3)2 -> Ca(HCO3)2 + Mg(OH)2") == "Ca(OH)2 + Mg(HCO3)2 -> Ca(HCO3)2 + Mg(OH)2"
+
+def test_double_replacement_5() :
+  assert balance("AgNO3 + NaCl -> AgCl + NaNO3") == "AgNO3 + NaCl -> AgCl + NaNO3"
+
+def test_double_replacement_6() :
+  assert balance("BaCl2 + Na2SO4 -> NaCl + BaSO4") == "BaCl2 + Na2SO4 -> 2NaCl + BaSO4"
+
+def test_double_replacement_7() :
+  assert balance("Mg(NO3)2 + Rb3PO4 -> RbNO3 + Mg3(PO4)2") == "3Mg(NO3)2 + 2Rb3PO4 -> 6RbNO3 + Mg3(PO4)2"
+
+def test_double_replacement_8() :
+  assert balance("(NH4)3PO4 + Pb(NO3)4 -> NH4NO3 + Pb3(PO4)4") == "4(NH4)3PO4 + 3Pb(NO3)4 -> 12NH4NO3 + Pb3(PO4)4"
+
+def test_double_replacement_9() :
+  assert balance("K2O + Fe(OH)3 -> KOH + Fe2O3") == "3K2O + 2Fe(OH)3 -> 6KOH + Fe2O3"
+
+def test_double_replacement_10() :
+  assert balance("Pb(OH)4 + CuS -> Cu(OH)2 + PbS2") == "Pb(OH)4 + 2CuS -> 2Cu(OH)2 + PbS2"
+
+def test_combustion_1() :
+  assert balance("C2H4 + O2 -> CO2 + H2O") == "C2H4 + 3O2 -> 2CO2 + 2H2O"
+
+def test_combustion_2() :
+  assert balance("C4H8 + O2 -> CO2 + H2O") == "C4H8 + 6O2 -> 4CO2 + 4H2O"
+
+def test_combustion_3() :
+  assert balance("C5H8 + O2 -> CO2 + H2O") == "C5H8 + 7O2 -> 5CO2 + 4H2O"
+
+def test_combustion_4() :
+  assert balance("C8H18 + O2 -> CO2 + H2O") == "2C8H18 + 25O2 -> 16CO2 + 18H2O"
+
+def test_combustion_5() :
+  assert balance("C6H14 + O2 -> CO2 + H2O") == "2C6H14 + 19O2 -> 12CO2 + 14H2O"
+
+def test_combustion_6() :
+  assert balance("C10H20 + O2 -> CO2 + H2O") == "C10H20 + 15O2 -> 10CO2 + 10H2O"
+
+def test_combustion_7() :
+  assert balance("C4H6 + O2 -> CO2 + H2O") == "2C4H6 + 11O2 -> 8CO2 + 6H2O"
+
+def test_combustion_8() :
+  assert balance("C5H12 + O2 -> CO2 + H2O") == "C5H12 + 8O2 -> 5CO2 + 6H2O"
+
+def test_combustion_9() :
+  assert balance("C2H6 + O2 -> CO2 + H2O") == "2C2H6 + 7O2 -> 4CO2 + 6H2O"
+
+def test_combustion_10() :
+  assert balance("C2H2 + O2 -> CO2 + H2O") == "2C2H2 + 5O2 -> 4CO2 + 2H2O"
