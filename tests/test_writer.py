@@ -114,7 +114,7 @@ def test_single_replacement_4() :
   assert balance("Cu + FeSO4 -> Cu2SO4 + Fe") == "2Cu + FeSO4 -> Cu2SO4 + Fe"
 
 def test_single_replacement_5() :
-  assert balance("Li + KOH -> H2 + LiOH") == "2Li + 2KOH -> H2 + 2LiOH"
+  assert balance("Li + KOH -> H2 + LiOK") == "2Li + 2KOH -> H2 + 2LiOK"
 
 def test_single_replacement_6() :
   assert balance("Zn + Pb(NO3)4 -> Zn(NO3)2 + Pb") == "2Zn + Pb(NO3)4 -> 2Zn(NO3)2 + Pb"
@@ -129,5 +129,5 @@ def test_single_replacement_9() :
   assert balance("Li + AlBr3 -> LiBr + Al") == "3Li + AlBr3 -> 3LiBr + Al"
 
 def test_single_replacement_10() :
-  assert balance("Na + KOH -> NaOH + H2") == "2Na + 2KOH -> 2NaOH + H2"
+  assert balance("Na + HOH -> NaOH + H2") == "2Na + 2HOH -> 2NaOH + H2"
 
