@@ -4,7 +4,6 @@
 
 import pytest
 from chemBal.utils import balance
-import colorama
 
 x = input("Input equation: ")
 
