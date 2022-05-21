@@ -3,7 +3,7 @@
 #Ryan Cullen
 
 import pytest
-from chemBal.utils import balance
+from chemBal import balance
 
 x = input("Input equation: ")
 
